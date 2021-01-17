@@ -7,8 +7,6 @@ import { useApi } from './useApi';
 const UserPage = () => {
 	const { id } = useParams();
 
-	//const [ data:eachData, isLoading, error]= useApi(`https://jsonplaceholder.typicode.com/users/${id}`)
-
 	const [eachData, setUsers] = useState([]);
 	useEffect(() => {
 		fetch(`https://jsonplaceholder.typicode.com/users/${id}`)
@@ -16,39 +14,33 @@ const UserPage = () => {
 			.then(json => setUsers(json));
 	}, []);
 
-	console.log('Card, UserPage ', eachData);
-	console.log('name UserPage', eachData.name);
-
-	// if (isLoading) {
-	//   return <LoadingSpinner />
-	// }
-	// if (error) {
-	//   return <ErrorMessage error={error} />
-  // }
-  
-  // Name- sujan 
-  // Address: turku
-
 	return (
 		<>
 			<div className="links">
-				<Link to="/">Home</Link>
-				<div> THIS is THE PROFILE OF THE PAGE</div>
+				<Link to="/">Back to Home</Link>
+				<div className="links-title"> <p>Here is the user detail:</p></div>
 			</div>
-			<div className={`user-page user-type`}>
-				<div className="user-image" />
+				
 				<div className="user-info">
-					<div className="user-name">{eachData.name}</div>
-					<div className="user-stats" data-testid="stats">
+					<div  className="stats">
 						<table>
 							<tbody>
-								{eachData.name},
-								{eachData.id}
+								name: {eachData.name}
+								<br></br>
+								username: {eachData.username}
+								<br></br>
+								email: {eachData.email}
+								<br></br>
+								phone:{eachData.phone}
+								
+								<br></br>
+								website: https://{eachData.website}
+								
 							</tbody>
 						</table>
 					</div>
 				</div>
-			</div>
+			
 		</>
 	);
 };

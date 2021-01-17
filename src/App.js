@@ -8,18 +8,18 @@ import UserList from './UserList';
 const App = () => {
 	const [userData, setUsers] = useState([]);
 	useEffect(() => {
-		fetch('https://jsonplaceholder.typicode.com/users')
+		fetch('https://jsonplaceholder.typicode.com/users?limit:9')
 			.then(response => response.json())
 			.then(data => {
 				setUsers(data);
 			});
 	}, []);
-	// const { data:userData, error, isLoading } = useApi('https://jsonplaceholder.typicode.com/users')
 
 	return (
 		<Router>
 			<Switch>
 				<>
+				  <div className ="App-header">Home Page</div>
 					<Route exact path="/">
 						<UserList userList={userData} />
 					</Route>
